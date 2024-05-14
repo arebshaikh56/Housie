@@ -1,156 +1,150 @@
-/* .gradient-custom-2 {
-    background: #fccb90;
-    
-    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-    
-    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-    }
-    
-    @media (min-width: 768px) {
-    .gradient-form {
-    height: 100vh !important;
-    }
-    }
-    @media (min-width: 769px) {
-    .gradient-custom-2 {
-    border-top-right-radius: .3rem;
-    border-bottom-right-radius: .3rem;
-    }
-    } */
+
+* {
+  margin: 0;
+  padding: 0;
+  border: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#main{
+  background-color: #952323;
+  height: 600px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
 
 
+#number-generated{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    * {
-        margin: 0;
-        padding: 0;
-        border: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-      }
-      #main{
-        background-color: #952323;
-        height: 600px;
-        width: 100%;
-        display: flex;
-        justify-content: space-evenly;
-      }
-
-
-    #number-generated{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #number-generated h1{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        height: 210px;
-        width: 200px;
-        margin-left: 35px;
-        font-size: 10rem;
-        color: #F9B208;
-        padding-left: 10px;
-        border: 1px solid #F9B208;
-        border-radius: 15px;
-        margin-top: 30px;  
-    }
+#number-generated h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 210px;
+  width: 200px;
+  margin-left: 35px;
+  font-size: 10rem;
+  color: #F9B208;
+  padding-left: 10px;
+  border: 1px solid #F9B208;
+  border-radius: 15px;
+  /* margin-top: 30px;   */
+}
 
 
-    #number-info {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      
-      #number-info h1 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        width: 250px; 
-        height: 150px;
-        font-size: 40px; 
-        color: #F9B208;
-        margin: 40px 20px; 
-        margin-left: 55px;
-        padding: 10px; 
-        border: 1px solid #F9B208;
-        border-radius: 15px;
-        word-wrap: break-word; 
-      }
-      
+#number-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    #call-button{
-        background-color: #F9B208;
-        height: 65px;
-        width: 200px;
-        font-size: 2.5rem;
-        color: #952323;
-        border-radius: 15px;
-        margin-top: 25px;
-        margin-left: 75px;
-       
-    }
-    #number-container{
-        margin-left: 40px;
-    }
-    #number-container1{
-        display: flex;
-    }
+#number-info h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 250px; 
+  height: 150px;
+  font-size: 40px; 
+  color: #F9B208;
+  margin: 40px 20px; 
+  margin-left: 55px;
+  padding: 10px; 
+  border: 1px solid #F9B208;
+  border-radius: 15px;
+  word-wrap: break-word; 
+}
 
-    #num-1,#num-2,#num-3,#num-4,#num-5,#num-6,#num-7,#num-8,#num-9,#num-10,
-    #num-11,#num-12,#num-13,#num-14,#num-15,#num-16,#num-17,#num-18,#num-19,#num-20,
-    #num-21,#num-22,#num-23,#num-24,#num-25,#num-26,#num-27,#num-28,#num-29,#num-30,
-    #num-31,#num-32,#num-33,#num-34,#num-35,#num-36,#num-37,#num-38,#num-39,#num-40,
-    #num-41,#num-42,#num-43,#num-44,#num-45,#num-46,#num-47,#num-48,#num-49,#num-50,
-    #num-51,#num-52,#num-53,#num-54,#num-55,#num-56,#num-57,#num-58,#num-59,#num-60,
-    #num-61,#num-62,#num-63,#num-64,#num-65,#num-66,#num-67,#num-68,#num-69,#num-70,
-    #num-71,#num-72,#num-73,#num-74,#num-75,#num-76,#num-77,#num-78,#num-79,#num-80,
-    #num-81,#num-82,#num-83,#num-84,#num-85,#num-86,#num-87,#num-88,#num-89,#num-90
-    {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 55px;
-        width: 75px;
-        background-color: #F9B208;
-        margin: 5px;
-        font-size: 2rem;
-        border-radius: 50%;
-    }
-    @keyframes moveLeftToRight {
-        0% {
-          transform: translateX(-100%);
-        }
-        100% {
-          transform: translateX(100%);
-        }
-      }
-    
-      #nav {
-        height: 50px;
-        width: 100%;
-        background-color: black;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden; /* Ensure text doesn't overflow */
-      }
-    
-      #nav h1 {
-        margin: 0;
-        font-size: 24px;
-        color: #F9B208;
-        animation: moveLeftToRight 5s linear infinite alternate; /* Adjust duration and animation as needed */
-        white-space: nowrap; /* Prevent text from wrapping */
-      }
 
-      #number {
-        transition: opacity 0.3s ease; /* Add transition for opacity with 0.3 seconds duration */
-      }
-      
+#call-button{
+  background-color: #F9B208;
+  height: 65px;
+  width: 200px;
+  font-size: 2.5rem;
+  color: #952323;
+  border-radius: 15px;
+  margin-top: 25px;
+  margin-left: 75px;
+ 
+}
+#number-container{
+  margin-left: 40px;
+}
+#number-container1{
+  display: flex;
+}
+
+#num-1,#num-2,#num-3,#num-4,#num-5,#num-6,#num-7,#num-8,#num-9,#num-10,
+#num-11,#num-12,#num-13,#num-14,#num-15,#num-16,#num-17,#num-18,#num-19,#num-20,
+#num-21,#num-22,#num-23,#num-24,#num-25,#num-26,#num-27,#num-28,#num-29,#num-30,
+#num-31,#num-32,#num-33,#num-34,#num-35,#num-36,#num-37,#num-38,#num-39,#num-40,
+#num-41,#num-42,#num-43,#num-44,#num-45,#num-46,#num-47,#num-48,#num-49,#num-50,
+#num-51,#num-52,#num-53,#num-54,#num-55,#num-56,#num-57,#num-58,#num-59,#num-60,
+#num-61,#num-62,#num-63,#num-64,#num-65,#num-66,#num-67,#num-68,#num-69,#num-70,
+#num-71,#num-72,#num-73,#num-74,#num-75,#num-76,#num-77,#num-78,#num-79,#num-80,
+#num-81,#num-82,#num-83,#num-84,#num-85,#num-86,#num-87,#num-88,#num-89,#num-90
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
+  width: 75px;
+  background-color: #F9B208;
+  margin: 5px;
+  font-size: 2rem;
+  border-radius: 50%;
+}
+@keyframes moveLeftToRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+#nav {
+  height: 50px;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ensure text doesn't overflow */
+}
+
+#nav h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #F9B208;
+  animation: moveLeftToRight 5s linear infinite alternate; /* Adjust duration and animation as needed */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+#number {
+  transition: opacity 0.3s ease; /* Add transition for opacity with 0.3 seconds duration */
+}
+
+#reset-button{
+  margin-left: -45px;
+  background-color:#F9B208;
+  border: none;
+  color:#952323;
+  font-size: 25px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/* .bx-reset{
+  font-size: 25px;
+} */
+
+
 
 
 

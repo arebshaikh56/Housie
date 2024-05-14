@@ -1,23 +1,80 @@
-document.getElementById("call-button").addEventListener("click", testFunction);
 
+let db; // Declare db globally
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Open IndexedDB database
+  const request = indexedDB.open("NumberDatabase", 1);
+
+  request.onerror = function (event) {
+    console.log("Database error: " + event.target.errorCode);
+  };
+
+  request.onsuccess = function (event) {
+    db = event.target.result;
+    console.log("Database opened successfully");
+
+    // Check if numberArray exists in IndexedDB, and retrieve it if it does
+    const transaction = db.transaction(["numbers"], "readonly");
+    const objectStore = transaction.objectStore("numbers");
+    const getRequest = objectStore.get(1);
+
+    getRequest.onsuccess = function (event) {
+      if (event.target.result) {
+        numberArray = event.target.result.value;
+        console.log("Retrieved numberArray from IndexedDB:", numberArray);
+
+        // Apply background colors based on the state information
+        numberArray.forEach((number) => {
+          if (number.state === "called") {
+            document.getElementById(`num-${number.num}`).style.backgroundColor = "#FFF8CD";
+          }
+        });
+      }
+    };
+  };
+
+  request.onupgradeneeded = function (event) {
+    const db = event.target.result;
+    const objectStore = db.createObjectStore("numbers", { keyPath: "id" });
+    console.log("Object store created");
+  };
+
+  // Add event listener for the call button
+  document.getElementById("call-button").addEventListener("click", testFunction);
+
+  // Add event listener for the reset button
+  document.getElementById("reset-button").addEventListener("click", resetGame);
+});
+
+// Define numberArray globally
 let numberArray = [];
 
 function testFunction() {
   let randomNumber;
   do {
-    randomNumber = Math.floor(Math.random() * 90) + 1; // Generate a random number between 1 and 10
-  } while (numberArray.includes(randomNumber)); // Repeat if the number is already in the array
+    randomNumber = Math.floor(Math.random() * 90) + 1;
+  } while (numberArray.some((number) => number.num === randomNumber));
 
-  numberArray.push(randomNumber);
+  numberArray.push({ num: randomNumber, state: "called" });
   console.log(numberArray);
 
-  // transition code
-  let numberDisplay = document.getElementById("number");
+  // Save numberArray to IndexedDB after adding a new number
+  const transaction = db.transaction(["numbers"], "readwrite");
+  const objectStore = transaction.objectStore("numbers");
+  const addRequest = objectStore.put({ id: 1, value: numberArray });
+
+  addRequest.onsuccess = function (event) {
+    console.log("NumberArray added to IndexedDB");
+  };
+
+  // Rest of your code...
+  // Transition of number and other code...
+    let numberDisplay = document.getElementById("number");
   numberDisplay.style.opacity = 0; // Set opacity to 0 for the transition effect
   setTimeout(() => {
     numberDisplay.innerHTML = randomNumber;
     numberDisplay.style.opacity = 1; // Set opacity back to 1 to reveal the number
-  }, 300); 
+  }, 300);
 
   // Your switch statement and other code here...
   switch (randomNumber) {
@@ -48,7 +105,7 @@ function testFunction() {
       document.getElementById("number").innerHTML = "4";
       document.getElementById("number-text").innerHTML = "Knock at the door";
       break;
-    case 5:
+      case 5:
       document.getElementById("num-5").style.backgroundColor = "#FFF8CD";
       let sound5 = new Audio("sounds/en_num_05.mp3");
       sound5.play();
@@ -640,13 +697,33 @@ function testFunction() {
         document.getElementById("number").innerHTML = "89";
         document.getElementById("number-text").innerHTML = "All but one";
         break;
-      default:
-        document.getElementById("num-90").style.backgroundColor = "#FFF8CD";
-        let sound90 = new Audio("sounds/en_num_90.mp3");
-        sound90.play();
-        document.getElementById("number").innerHTML = "90";
-        document.getElementById("number-text").innerHTML = "Top of the House";
-        break;
+    default:
+      document.getElementById("num-90").style.backgroundColor = "#FFF8CD";
+      let sound90 = new Audio("sounds/en_num_90.mp3");
+      sound90.play();
+      document.getElementById("number").innerHTML = "90";
+      document.getElementById("number-text").innerHTML = "Top of the House";
+      break;
+  }
 }
+
+function resetGame() {
+  // Clear numberArray
+  numberArray = [];
+
+  // Clear IndexedDB data
+  const transaction = db.transaction(["numbers"], "readwrite");
+  const objectStore = transaction.objectStore("numbers");
+  const clearRequest = objectStore.clear();
+
+  clearRequest.onsuccess = function (event) {
+    console.log("IndexedDB data cleared");
+  };
+
+  // Reset background colors to normal
+  document.querySelectorAll(".number").forEach((element) => {
+    element.style.backgroundColor = "initial";
+  });
 }
+
 
